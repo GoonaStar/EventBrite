@@ -1,0 +1,31 @@
+<br>
+<br>
+<br>
+
+
+
+<div class="show1">
+    <div class="container-fluid show2">
+        <div class="row top">
+			<div class="col-md-4 right">
+				<h1 class="date"><%= @event.start_date %></h1> <br><br><br>
+				<h1 class="title"><%=@event.title.capitalize%></h1><br>
+				<div class="price">
+                <small class="text-muted"><%=@event.price%>€</small>
+            	</div>
+
+            </div>
+        </div>
+
+         <div class="row top">
+            <div class="col-md-8 text">
+                <h2>Description</h2>
+                <p><%= @event.description %></p>
+            </div>
+         </div>
+    </div>
+
+
+</div>
+<br>
+<p><center><%= link_to 'Back', events_path %></center></p>

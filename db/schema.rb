@@ -44,11 +44,13 @@ ActiveRecord::Schema.define(version: 2019_11_05_124036) do
     t.text "description"
     t.string "first_name"
     t.string "last_name"
+    t.bigint "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.index ["admin_id"], name: "index_users_on_admin_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
