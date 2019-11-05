@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
+gem 'image_suckr'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'table_print'

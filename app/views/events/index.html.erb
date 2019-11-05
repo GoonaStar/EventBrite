@@ -1,7 +1,35 @@
+
 <br>
 <br>
-<br>
+<div class="jumbotron banner">
+        <div class="typewriter">
+            <h1><center>EventBrite</center></h1>
+        </div>
+      </div>
+
 <h2><center>Trouves l'Evenement de ton Choix</center></h2>
 
 <p><center>Et libère toi de ton quotidien de codeur</center></p>
+
+<br>
+<div class="container">
+    <div class="row">
+
+     <% @events.each do |event| %>
+      <div class="col">
+    <a href= "<%= "events/#{event.id}"%>" style="text-decoration: none"><div class="card mb-3">
+     
+      <div class="card-body">
+        <h4 class="card-title"><%= event.title.capitalize %></h4>
+        <h5 class="card-title"><%= event.location.capitalize %></h5>
+        <span class="badge badge-pill badge-secondary"><%= event.price %>€</span>
+      </div>
+      <div class="card-footer text-muted">
+        <%= event.start_date %>
+      </div>
+    </div></a>
+  </div>
+     <% end %>
+    </div>
+</div>
 
