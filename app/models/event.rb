@@ -1,23 +1,24 @@
+
 class Event < ApplicationRecord
-	belongs_to :user
-	has_many :attendances
-	has_many :users, through: :attendances
-	
-	validates :start_date, :duration, :title, :description, :price, :location, presence: true
-
-	validates :after_today_ok, presence: true
-
-	def after_today_ok
-		if start_date.present? && start_date < Time.now
-			errors.add(:start_date, "t'es pas marty macfly, pas dans le passé")
-		end
-	end
-
-	validates :duration, numericality: { greater_than: 0 }
-	
-  	validates :title, length: { in: 5..140 }
-  	validates :description, length: { in: 20..1000 }
-  	validates :price, :inclusion => 0..1000
-
-	 
+  validates :start_date, presence: true
+  def start_date_cannot_be_in_the_past
+    if !start_date.blank? and expiration_date < Date.today
+      errors.add(:start_date, "can't be in the past")
+    end
+  end
+  validate :duration_must_be_multiple_of_5
+  private
+  def duration_must_be_multiple_of_5
+    return if duration.blank? #On sort de la fonction si duration est vide
+    if duration % 5 != 0
+      errors.add(:duration, "Duration has to be multiple of 5")
+    end
+  end
+	validates :duration, :numericality => {:greater_than => 0}, presence: true
+	validates :title, presence: true, length: { in: 5...140}
+	validates :description, presence: true, length: { in: 20...1000}
+	validates :price, presence: true, length: { in: 1...1000}			
+	validates :location, presence: true			
+	has_many :attendance
+  has_many :users, through: :attendance
 end
